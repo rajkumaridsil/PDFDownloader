@@ -26,7 +26,7 @@ namespace PDFDownloader
             var output = new Output(configuration.DownloadDirectory);
             var activeDownloads = new ActiveDownloads(logger);
             var directoryMonitor = new DirectoryMonitor(configuration.UploadDirectory, input);
-            var PdfGenerator = new PdfGenerator(output, configuration, activeDownloads, directoryMonitor);
+            var PdfGenerator = new HtmlToPdfGenerator(output, configuration, activeDownloads, directoryMonitor);
 
             activeDownloads.OnChange = (item) =>
             {

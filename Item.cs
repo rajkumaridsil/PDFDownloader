@@ -20,16 +20,16 @@ namespace PDFDownloader
         public DateTime DownloadedTime;
 
         ActiveDownloads ActiveDownloads;
-        PdfGenerator PdfGenrator;
+        HtmlToPdfGenerator HtmlToPdfGenerator;
         Output Output;
 
-        public Item(Input.Row row, ActiveDownloads activeDownloads, Output output, PdfGenerator pdfgenrator)
+        public Item(Input.Row row, ActiveDownloads activeDownloads, Output output, HtmlToPdfGenerator htmltoPdfgenerator)
         {
             Id = row.Id;
             Uri = row.Uri;
             ActiveDownloads = activeDownloads;
             Output = output;
-            PdfGenrator = pdfgenrator;
+            HtmlToPdfGenerator = htmltoPdfgenerator;
         }
 
         private void SetStatus(EnumItemStatus status)
@@ -43,27 +43,29 @@ namespace PDFDownloader
             }
         }
 
-        private void GenratorPDF()
+        private void HtmlToPdfGeneratorThread()
         {
             int returnCode;
-            returnCode = PdfGenrator.HtmlToPdfDownloads(Uri.ToString(), Id);
-            if ((returnCode == 0) || (returnCode == 2))
-            {
-                Message = "200 OK";
-                Success = true;
-            }
-            else
-            {
-                Message = "0 Not a .html";
-                Success = false;
-            }
+     
+             returnCode = HtmlToPdfGenerator.HtmlToPdfDownloads(Uri.ToString(), Id);
+               if ((returnCode == 0) || (returnCode == 2))
+               {
+                   Message = "200 OK";
+                   Success = true;
+               }
+               else
+               {
+                   Message = "0 Not a .html";
+                   Success = false;
+               }
+           
        }
        public async void Start()
        {
             SetStatus(EnumItemStatus.Working);
 
 
-            await Task.Run(() => GenratorPDF());
+            await Task.Run(() => HtmlToPdfGeneratorThread());
 
             SetStatus(EnumItemStatus.Completed);
 

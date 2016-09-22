@@ -14,10 +14,10 @@ namespace PDFDownloader
         DelayedInput DelayedInput;
         DirectoryMonitor DirectoryMonitor;
         Configuration Configuration;
-        PdfGenerator PdfGenerator;
+        HtmlToPdfGenerator PdfGenerator;
         string LastStatusText;
 
-        public DownloadManager(DelayedInput input, Output output, Configuration configuration, ActiveDownloads activeDownloads, Logger logger, DirectoryMonitor directoryMonitor, PdfGenerator pdfgenerator)
+        public DownloadManager(DelayedInput input, Output output, Configuration configuration, ActiveDownloads activeDownloads, Logger logger, DirectoryMonitor directoryMonitor, HtmlToPdfGenerator pdfgenerator)
         {
             ActiveDownloads = activeDownloads;
             Output = output;

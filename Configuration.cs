@@ -39,8 +39,8 @@ namespace PDFDownloader
             MaxActiveDownloads = 5;
             DefaultDownloadsPerMinute = 3;
 
-            MaxDownloadsPerMinuteDb.Add("www.google.com", 1);
-            MaxDownloadsPerMinuteDb.Add("wd40.com", 1);
+            MaxDownloadsPerMinuteDb.Add("www.google.com", 5);
+            MaxDownloadsPerMinuteDb.Add("wd40.com", 5);
         }
     }
 }

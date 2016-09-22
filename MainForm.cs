@@ -23,7 +23,6 @@ namespace PDFDownloader
 
         public void SetActiveList(string[] lines)
         {
-
             tbActiveList.AppendText(string.Join(Environment.NewLine, lines));
         }
     }
